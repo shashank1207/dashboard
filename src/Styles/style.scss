@@ -71,6 +71,9 @@ $icon-size: 16px;
     color: #fff;
     margin-top: 10px;
   }
+  flex-direction: row;
+  margin-top: auto;
+  margin-bottom: 0;
   width: inherit;
 }
 .input-form input {
@@ -82,6 +85,7 @@ $icon-size: 16px;
   color: #fff;
   font-size: 20px;
   caret-color: #fff;
+  flex: 8;
   border-bottom: 2px solid #fff;
 }
 .google {
@@ -170,6 +174,17 @@ $icon-size: 16px;
 }
 .news-div:hover{
   cursor: pointer;
+}
+.forecast-el{
+  background: $input-background;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 80px;
+  justify-content: center;
+  height: auto;
 }
 @media (max-width: $breakpoint-first) {
   .main {

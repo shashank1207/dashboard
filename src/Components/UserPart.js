@@ -92,16 +92,19 @@ const UserPart = (props) => {
         "col-12 col-sm-12 col-md-6 col-lg-4 col-mobile p-0 p-sm-2 mb-2 mb-sm-0"
       }
     >
-      <Card>
-        <div className={`name`}>
-          {greetings}, <br /> Shashank
+      <Card className={`h-100`}>
+        <div className={`d-flex flex-column justify-content-around h-100`}>
+          <div className={`name`}>
+            {greetings}, <br /> Shashank
+          </div>
+          <div className={`date`}>{time.textContent}</div>
+          <div className={`date`}>
+            {days[time.day]}, {time.date}
+            {dateFunction(time.date)} {monthNames[time.month]} {time.year}
+          </div>
+          <Search />
         </div>
-        <div className={`date`}>{time.textContent}</div>
-        <div className={`date`}>
-          {days[time.day]}, {time.date}
-          {dateFunction(time.date)} {monthNames[time.month]} {time.year}
-        </div>
-        <Search />
+        
       </Card>
     </div>
   );

@@ -7,15 +7,15 @@ import {
   faWind,
   faEdit,
 } from "@fortawesome/free-solid-svg-icons";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 import WeatherCond from "./WeatherCond";
 
 const Weather = (props) => {
-  // const [weather, setWeather] = useState();
+  const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(true);
   const [iconLink, setIconLink] = useState("");
-  const weather = useSelector(state => state.weather);
+  const weather = useSelector((state) => state.weather);
   const dispatch = useDispatch();
 
   const editCityHandler = () => {};
@@ -32,14 +32,59 @@ const Weather = (props) => {
         responseData.weather[0].icon +
         "@2x.png"
     );
-    // setWeather(responseData);
-    dispatch({type: 'WEATHER', val: responseData});
+
+    const forecastRes = await fetch(
+      BASE_URL + "forecast?q=GUNA&appid=" + process.env.REACT_APP_WEATHER_KEY
+    );
+
+    const forecastResData = await forecastRes.json();
+    const d = new Date();
+    const h = d.getHours();
+    const date = d.getDate();
+    // const newList = forecastResData.list.filter((data) => {
+    //   const d1 = new Date(data.dt_txt);
+    //   const forecastHour = d1.getHours();
+    //   const forecastDate = d1.getDate();
+    //   return forecastHour > h && forecastDate === date;
+    // });
+
+    const newList = forecastResData.list.slice(0, 7);
+    const list = [];
+    newList.forEach((el, index) => {
+      if (index <= 5) {
+        list.push(el);
+      }
+      return;
+    });
+    setForecast(list);
+    dispatch({ type: "WEATHER", val: responseData });
+
     setLoading(false);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     getWeather();
   }, [getWeather]);
+
+  const content = forecast.map((el) => {
+    const d = new Date(el.dt_txt);
+    const hour = d.getHours();
+    const minute = d.getMinutes();
+    const date = d.getDate();
+    const month = d.getMonth() + 1;
+    return (
+      <div className={`col-md-4 col-lg-4 col-xl-2 my-sm-2 mx-1 forecast-el`}>
+        {Math.round(el.main.temp - 273)} &#x2103;
+        <img
+          src={
+            "http://openweathermap.org/img/wn/" + el.weather[0].icon + "@2x.png"
+          } className={`img-fluid`}
+        />
+        <span className={`text-center`}>{hour}:{minute}</span>
+        <span className={`text-center`}>{date}-{month}</span>
+      </div>
+    );
+  });
 
   if (loading) {
     return <div></div>;
@@ -102,6 +147,16 @@ const Weather = (props) => {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className={`d-none d-sm-none d-md-flex`}>
+        <div className={`col`}>
+          <div
+            className={`row w-100`}
+            style={{ justifyContent: "space-between" }}
+          >
+            {content}
           </div>
         </div>
       </div>

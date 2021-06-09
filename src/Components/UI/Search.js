@@ -17,10 +17,10 @@ const Search = (props) => {
   return (
     <form
       onSubmit={formSubmitHandler}
-      className={`form-control d-flex input-form my-3`}
+      className={`form-control d-flex input-form my-3 `}
     >
-        <Google className={`google`} />
-        <input value={search} onChange={inputChangeHandler} />
+      <Google className={`google`} />
+      <input value={search} onChange={inputChangeHandler} />
     </form>
   );
 };

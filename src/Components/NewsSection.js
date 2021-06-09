@@ -58,7 +58,8 @@ const NewsSection = (props) => {
 
   return (
     <div className={`container-fluid`}>
-      <div className={`row`}>
+      <div className={`row font-weight-bold h2 mb-2`}>Trending Headlines</div>
+      <div className={`row mt-4`}>
         <div className={`col-12 m-auto`}>
           {content}
         </div>
