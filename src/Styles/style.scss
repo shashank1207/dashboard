@@ -1,0 +1,216 @@
+$breakpoint-first: 576px;
+$breakpoint-second: 768px;
+$breakpoint-third: 992px;
+$breakpoint-fourth: 1200px;
+$background-color: rgba(10, 10, 10, 0.6);
+$input-background: rgba(46, 54, 82, 0.796);
+$button-color: rgba(78, 145, 200, 0.961);
+$opacity: 0.6;
+$text-color: #ffffff;
+$default-font: "roboto";
+$icon-size: 16px;
+
+.main {
+  min-height: 100vh;
+  height: auto;
+  padding: 3rem 0;
+  margin: auto;
+}
+
+.card-manual {
+  background-color: $background-color;
+  width: inherit;
+  height: 100%;
+  border-radius: 12px;
+  padding: 2rem;
+}
+.card-children {
+  opacity: 1;
+  color: $text-color;
+}
+.upper-part {
+  min-height: 40%;
+}
+.name {
+  font-size: 3rem;
+  font-family: $default-font;
+}
+.date {
+  font-size: 2rem;
+  font-family: $default-font;
+}
+@media (max-width: $breakpoint-first) {
+  .main {
+    max-width: 100%;
+  }
+}
+.temp {
+  font-size: 20px;
+}
+.city-name {
+  font-size: 24px;
+}
+.icon {
+  font-size: $icon-size;
+}
+.edit-city {
+  margin: 1rem;
+  cursor: pointer;
+}
+.lower-part {
+  margin: 0;
+  padding: 0;
+  min-height: 60%;
+}
+.input-form {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  ::-webkit-input-placeholder {
+    font-size: 2rem;
+    color: #fff;
+    margin-top: 10px;
+  }
+  width: inherit;
+}
+.input-form input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin: 0 1rem;
+  width: 90%;
+  color: #fff;
+  font-size: 20px;
+  caret-color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.google {
+  max-height: 100%;
+  height: 100%;
+}
+.todo-input {
+  width: 100%;
+}
+.todo-input input {
+  width: 80%;
+  background: $input-background;
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  height: 3rem;
+  color: $button-color;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  caret-color: $button-color;
+  padding: 1rem;
+  ::-webkit-input-placeholder {
+    color: $button-color;
+    font-size: 2.5rem;
+  }
+}
+.task-button button {
+  height: 3rem;
+  background: $button-color;
+  width: 80%;
+  max-width: 250px;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  outline: none;
+  border: none;
+  color: $text-color;
+}
+.task-el {
+  background: $input-background;
+  width: 80%;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  height: 3rem;
+  border-radius: 16px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+}
+.task-col {
+  display: flex;
+  justify-content: flex-end;
+}
+.task-edit {
+  height: 3rem;
+  width: 80%;
+  max-width: 250px;
+  border-radius: 16px;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  border: none;
+  background: $button-color;
+}
+.edit-icon:hover {
+  cursor: pointer;
+}
+.news-el {
+  background: $input-background;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  height: auto;
+  width: 100%;
+  overflow: auto;
+}
+
+.heading {
+  font-size: 24px;
+}
+.img-div {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0 1rem;
+}
+.img-div img {
+  max-width: 200px;
+}
+.news-div:hover{
+  cursor: pointer;
+}
+@media (max-width: $breakpoint-first) {
+  .main {
+    max-width: 100%;
+  }
+  .name {
+    font-size: 2rem;
+    font-family: $default-font;
+  }
+  .date {
+    font-size: 2rem;
+    font-family: $default-font;
+  }
+}
+
+@media (max-width: $breakpoint-second) and (min-width: $breakpoint-first) {
+  .main {
+    max-width: 100%;
+  }
+  .name {
+    font-size: 2rem;
+    font-family: $default-font;
+  }
+}
+
+@media (max-width: $breakpoint-third) and (min-width: $breakpoint-second) {
+  .main {
+    max-width: 95%;
+  }
+  .name {
+    font-size: 2rem;
+    font-family: $default-font;
+  }
+}
+@media (max-width: $breakpoint-fourth) and (min-width: $breakpoint-third) {
+  .main {
+    max-width: 90%;
+  }
+}
+@media (min-width: $breakpoint-fourth) {
+  .main {
+    max-width: 90%;
+  }
+}
