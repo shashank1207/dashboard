@@ -199,6 +199,37 @@ $icon-size: 16px;
     font-family: $default-font;
   }
 }
+.detail-card{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+}
+.detail-card input, .detail-card input:focus, .detail-card input:active{
+  background: $input-background;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  border-radius: 16px;
+  padding: 1rem;
+  border: none;
+  color: $text-color;
+  outline: none;
+}
+.detail-form{
+  display: flex;
+  flex-direction: column;
+}
+.detail-button button{
+  height: 3rem;
+  background: $button-color;
+  width: 50%;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  outline: none;
+  border: none;
+  color: $text-color;
+}
 
 @media (max-width: $breakpoint-second) and (min-width: $breakpoint-first) {
   .main {
@@ -223,9 +254,17 @@ $icon-size: 16px;
   .main {
     max-width: 90%;
   }
+  .user-card{
+    justify-content: flex-start !important;
+  }
 }
 @media (min-width: $breakpoint-fourth) {
   .main {
     max-width: 90%;
+  }
+}
+@media (max-width: $breakpoint-second){
+  .detail-button button{
+    width: 100%;
   }
 }

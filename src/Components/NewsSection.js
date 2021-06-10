@@ -2,25 +2,6 @@ import React, { useEffect, useState } from "react";
 import Headline from "./NewsHeading";
 import { useDispatch, useSelector } from "react-redux";
 
-const Dummy = [
-  {
-    source: {
-      id: null,
-      name: "NDTV News",
-    },
-    author: null,
-    title:
-      "New Covid Strain Detected By Pune Virologists, Not Found In Indian Cases - NDTV",
-    description:
-      "A new Covid variant that needs more antibodies to fight it and has more severe symptoms has been found by the National Institute of Virology in Pune. The variant - B.1.1.28.2 - was detected in samples from two travellers from Brazil but not from anyo",
-    url: "https://www.ndtv.com/india-news/new-covid-strain-detected-by-pune-virologists-not-found-in-indian-cases-2459296",
-    urlToImage:
-      "https://c.ndtvimg.com/2020-04/fuje0e1c_coronavirus-generic-reuters-650_625x300_21_April_20.jpg",
-    publishedAt: "2020-07-08T13:46:04Z",
-    content:
-      "No sample sequenced from India so far has been of this variant, NIV scientists said (Representational)\r\nA new Covid variant that needs more antibodies to fight it and has more severe symptoms has bee… [+1882 chars]",
-  },
-];
 
 const NewsSection = (props) => {
   const disapatch = useDispatch();

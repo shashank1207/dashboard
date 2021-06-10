@@ -21,9 +21,17 @@ const Weather = (props) => {
   const editCityHandler = () => {};
 
   const getWeather = useCallback(async () => {
+    const token = localStorage.getItem('token')
+
+    const user = await fetch('https://dashboard-7611d-default-rtdb.firebaseio.com/users/' + token + '.json');
+    const userData = await user.json();
+    console.log(userData)
+
+    const city = userData.city;
+
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const response = await fetch(
-      BASE_URL + "weather?q=guna&APPID=" + process.env.REACT_APP_WEATHER_KEY
+      BASE_URL + "weather?q=" + city +  "&APPID=" + process.env.REACT_APP_WEATHER_KEY
     );
 
     const responseData = await response.json();
@@ -34,20 +42,14 @@ const Weather = (props) => {
     );
 
     const forecastRes = await fetch(
-      BASE_URL + "forecast?q=GUNA&appid=" + process.env.REACT_APP_WEATHER_KEY
+      BASE_URL + "forecast?q=" + city +"&appid=" + process.env.REACT_APP_WEATHER_KEY
     );
+
 
     const forecastResData = await forecastRes.json();
     const d = new Date();
     const h = d.getHours();
     const date = d.getDate();
-    // const newList = forecastResData.list.filter((data) => {
-    //   const d1 = new Date(data.dt_txt);
-    //   const forecastHour = d1.getHours();
-    //   const forecastDate = d1.getDate();
-    //   return forecastHour > h && forecastDate === date;
-    // });
-
     const newList = forecastResData.list.slice(0, 7);
     const list = [];
     newList.forEach((el, index) => {
@@ -73,7 +75,7 @@ const Weather = (props) => {
     const date = d.getDate();
     const month = d.getMonth() + 1;
     return (
-      <div className={`col-md-4 col-lg-4 col-xl-2 my-sm-2 mx-1 forecast-el`}>
+      <div className={`col-md-4 col-lg-4 col-xl-2 my-sm-2 mx-1 forecast-el`} key={Math.random()}>
         {Math.round(el.main.temp - 273)} &#x2103;
         <img
           src={
@@ -150,7 +152,7 @@ const Weather = (props) => {
           </div>
         </div>
       </div>
-      <div className={`d-none d-sm-none d-md-flex`}>
+      <div className={`d-none d-sm-none d-lg-flex`}>
         <div className={`col`}>
           <div
             className={`row w-100`}

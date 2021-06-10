@@ -5,6 +5,7 @@ import Search from "./UI/Search";
 const UserPart = (props) => {
   const [time, setTime] = useState();
   const [greetings, setGreetings] = useState("");
+  const [username, setUsername] = useState();
 
   const monthNames = [
     "January",
@@ -43,14 +44,14 @@ const UserPart = (props) => {
     }
   };
   const fetchTime = () => {
-    var d = new Date();
-    var date = d.getDate();
-    var month = d.getMonth();
-    var year = d.getFullYear();
-    var day = d.getDay();
-    var s = d.getSeconds();
-    var m = d.getMinutes();
-    var h = d.getHours();
+    let d = new Date();
+    let date = d.getDate();
+    let month = d.getMonth();
+    let year = d.getFullYear();
+    let day = d.getDay();
+    let s = d.getSeconds();
+    let m = d.getMinutes();
+    let h = d.getHours();
     const textContent =
       ("0" + h).substr(-2) +
       ":" +
@@ -60,6 +61,19 @@ const UserPart = (props) => {
     const data = { textContent, h, m, s, d, date, month, year, day };
     setTime(data);
   };
+
+  const fetchUser = async () => {
+    const token = localStorage.getItem('token');
+
+    const user = await fetch('https://dashboard-7611d-default-rtdb.firebaseio.com/users/' + token + '.json');
+
+    const userData = await user.json();
+    setUsername(userData.name);
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, [username])
 
   useEffect(() => {
     if (time) {
@@ -93,9 +107,9 @@ const UserPart = (props) => {
       }
     >
       <Card className={`h-100`}>
-        <div className={`d-flex flex-column justify-content-around h-100`}>
+        <div className={`d-flex flex-column justify-content-around user-card h-100`}>
           <div className={`name`}>
-            {greetings}, <br /> Shashank
+            {greetings}, <br /> {username}
           </div>
           <div className={`date`}>{time.textContent}</div>
           <div className={`date`}>

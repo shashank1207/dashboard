@@ -15,7 +15,7 @@ const Todo = (props) => {
   useEffect(() => {
     const getData = async () => {
       const response = await fetch(
-        "https://dashboard-7611d-default-rtdb.firebaseio.com/tasks.json"
+        "https://dashboard-7611d-default-rtdb.firebaseio.com/users/" + localStorage.getItem('token') +"/tasks.json"
       );
 
       const responseData = await response.json();
@@ -52,7 +52,7 @@ const Todo = (props) => {
     };
 
     const response = await fetch(
-      "https://dashboard-7611d-default-rtdb.firebaseio.com/tasks.json",
+      "https://dashboard-7611d-default-rtdb.firebaseio.com/users/" + localStorage.getItem('token') +"/tasks.json",
       {
         method: "POST",
         body: JSON.stringify(dataSent),
@@ -83,7 +83,7 @@ const Todo = (props) => {
     }
 
     await fetch(
-      "https://dashboard-7611d-default-rtdb.firebaseio.com/tasks/" +
+      "https://dashboard-7611d-default-rtdb.firebaseio.com/users/"+ localStorage.getItem('token') + "/tasks/" +
         task.id +
         ".json",
       {
@@ -112,7 +112,7 @@ const Todo = (props) => {
 
     setTasks(newList);
     await fetch(
-      "https://dashboard-7611d-default-rtdb.firebaseio.com/tasks/" +
+      "https://dashboard-7611d-default-rtdb.firebaseio.com/users/" + localStorage.getItem('token') + "/tasks/" +
         id +
         ".json",
       {

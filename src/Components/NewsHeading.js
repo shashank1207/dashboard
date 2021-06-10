@@ -37,7 +37,7 @@ const Headline = (props) => {
   return (
     <div className={`news-div`} onClick={() => openArticle(props.article.url)}>
       <div className={`row mb-3`}>
-        <div className={`news-el`}>
+        <div className={`news-el justify-content-center`}>
           <div className={`col-8`}>
             <div
               className={`d-flex flex-column align-items-stretch justfy-content-stretch h-100`}
