@@ -2,11 +2,13 @@ import { createStore } from "redux";
 
 const initialState = {
   weather: {
+    weather: [{"main": "Clouds"}],
     sys:{
     country: 'in'
   }},
   news: [],
-  isLoggedIn: false
+  isLoggedIn: false,
+  backgroundImg: 'https://github.com/shashank1207/dashboard/blob/Master/src/Assets/screen_2x.jpg'
 }
 
 const defaultReducer = (state = initialState, action) => {
@@ -29,6 +31,14 @@ const defaultReducer = (state = initialState, action) => {
       weather: state.weather,
       news: state.news,
       isLoggedIn: action.val
+    }
+  }
+  if(action.type === 'BG'){
+    return {
+      weather: state.weather,
+      news: state.news,
+      isLoggedIn: state.isLoggedIn,
+      backgroundImg: action.val
     }
   }
   return state;

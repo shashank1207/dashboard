@@ -10,6 +10,13 @@ $text-color: #ffffff;
 $default-font: "roboto";
 $icon-size: 16px;
 
+.main-container{
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .main {
   min-height: 100vh;
   height: auto;
