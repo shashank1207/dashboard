@@ -17,15 +17,17 @@ const Weather = (props) => {
   const [iconLink, setIconLink] = useState("");
   const weather = useSelector((state) => state.weather);
   const dispatch = useDispatch();
+  const cityState = useSelector(state => state.city);
 
-  const editCityHandler = () => {};
+  const editCityHandler = () => {
+    dispatch({type: 'EDIT', val: true})
+  };
 
   const getWeather = useCallback(async () => {
     const token = localStorage.getItem('token')
 
     const user = await fetch('https://dashboard-7611d-default-rtdb.firebaseio.com/users/' + token + '.json');
     const userData = await user.json();
-    console.log(userData)
 
     const city = userData.city;
 
@@ -33,7 +35,6 @@ const Weather = (props) => {
     const response = await fetch(
       BASE_URL + "weather?q=" + city +  "&APPID=" + process.env.REACT_APP_WEATHER_KEY
     );
-
     const responseData = await response.json();
     setIconLink(
       "http://openweathermap.org/img/wn/" +
@@ -62,11 +63,21 @@ const Weather = (props) => {
     dispatch({ type: "WEATHER", val: responseData });
 
     setLoading(false);
-  }, [dispatch]);
+  },[dispatch]);
 
   useEffect(() => {
     getWeather();
   }, [getWeather]);
+
+  useEffect(()=> {
+    const timer = setTimeout(()=>{
+      getWeather();
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [cityState, getWeather]);
 
   const content = forecast.map((el) => {
     const d = new Date(el.dt_txt);

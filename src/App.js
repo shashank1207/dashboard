@@ -14,7 +14,7 @@ const App = () => {
   const size = innerWidth + 'x' + innerHeight;
 
   useEffect(() => {
-    const url = "https://source.unsplash.com/"+size+ "/?fields,mountains" 
+    const url = "https://source.unsplash.com/"+size+ "/?weather," + conditions 
 
     dispatch({type: 'BG', val: url})
   }, [weather])

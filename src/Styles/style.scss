@@ -16,7 +16,57 @@ $icon-size: 16px;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+.backdrop{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(46, 54, 82, 0.5);
+  z-index: 20;
+  top: 0;
+  left: 0;
+  // transform: translateX(-50%) translateY(-50%);
+}
+.modal{
+  height: auto;
+  width: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  justify-content: center;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+}
+.modal input, .detail-card input:focus, .detail-card input:active{
+  background: $input-background;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  border-radius: 16px;
+  padding: 1rem;
+  border: none;
+  color: $text-color;
+  outline: none;
+}
+.cancel-button{
+  height: 2rem;
+  background: $input-background;
+  max-width: 250px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  outline: none;
+  border: none;
+  color: $text-color;
+}
+.submit-button{
+  height: 2rem;
+  background: $button-color;
+  max-width: 250px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.74) 0px 3px 8px;
+  outline: none;
+  border: none;
+  color: $text-color;
+}
 .main {
   min-height: 100vh;
   height: auto;

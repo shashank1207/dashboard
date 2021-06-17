@@ -131,7 +131,7 @@ const Todo = (props) => {
             ) : (
               <FontAwesomeIcon icon={faClock} />
             )}
-            <span className={`mx-2`}>{task.name}</span>
+            <span className={`mx-2`}>{task.status ? <strike>{task.name}</strike>:task.name}</span>
           </div>
         </div>
         <div className={`col`}>

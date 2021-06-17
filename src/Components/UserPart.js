@@ -101,7 +101,8 @@ const UserPart = (props) => {
     return <div></div>;
   }
   return (
-    <div
+    
+      <div
       className={
         "col-12 col-sm-12 col-md-6 col-lg-4 col-mobile p-0 p-sm-2 mb-2 mb-sm-0"
       }

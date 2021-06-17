@@ -5,14 +5,16 @@ import Weather from "./Weather";
 
 const UpperPart = () => {
   return (
-    <div className={`row upper-part mb-2`}>
-      <UserPart />
-      <div className={`col-12 col-sm-12 col-md-6 col-lg col-mobile p-0 p-sm-2`}>
-        <Card>
-          <Weather />
-        </Card>
+      <div className={`row upper-part mb-2 w-100 w-md-100 m-auto`}>
+        <UserPart />
+        <div
+          className={`col-12 col-sm-12 col-md-6 col-lg col-mobile p-0 p-sm-2`}
+        >
+          <Card>
+            <Weather />
+          </Card>
+        </div>
       </div>
-    </div>
   );
 };
 
