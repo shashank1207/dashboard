@@ -45,10 +45,10 @@ const EditCity = () => {
         <input value={enteredCity} autoComplete='off' id="city" onChange={changeHandler} />
         {error && <p>Please Input valid city</p>}
         <div className={`d-flex justify-content-end my-3`}>
-          <button className={`mr-2 cancel-button`} onClick={onCancelClick}>
+          <button className={`mr-2 cancel-button p-2`} type='button' onClick={onCancelClick}>
             Cancel
           </button>
-          <button type='submit' className={`submit-button`}>Submit</button>
+          <button type='submit' className={`submit-button p-2`}>Submit</button>
         </div>
       </form>
     </Card>

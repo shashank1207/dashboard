@@ -104,7 +104,7 @@ const UserPart = (props) => {
     
       <div
       className={
-        "col-12 col-sm-12 col-md-6 col-lg-4 col-mobile p-0 p-sm-2 mb-2 mb-sm-0"
+        "col-12 col-sm-12 col-md-6 col-lg-4 col-mobile px-0 pr-2 py-2 mb-2 mb-sm-0"
       }
     >
       <Card className={`h-100`}>

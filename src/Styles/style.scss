@@ -46,7 +46,7 @@ $icon-size: 16px;
   outline: none;
 }
 .cancel-button{
-  height: 2rem;
+  height: auto;
   background: $input-background;
   max-width: 250px;
   width: auto;
@@ -57,7 +57,7 @@ $icon-size: 16px;
   color: $text-color;
 }
 .submit-button{
-  height: 2rem;
+  height: auto;
   background: $button-color;
   max-width: 250px;
   width: auto;
@@ -170,7 +170,7 @@ $icon-size: 16px;
 }
 .task-button button {
   height: 3rem;
-  background: $button-color;
+  background: $input-background;
   width: 80%;
   max-width: 250px;
   border-radius: 16px;
