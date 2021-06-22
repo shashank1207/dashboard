@@ -17,25 +17,38 @@ const Weather = (props) => {
   const [iconLink, setIconLink] = useState("");
   const weather = useSelector((state) => state.weather);
   const dispatch = useDispatch();
-  const cityState = useSelector(state => state.city);
+  const cityState = useSelector((state) => state.city);
+  const [cityStatus, setCityStatus] = useState(true);
 
   const editCityHandler = () => {
-    dispatch({type: 'EDIT', val: true})
+    dispatch({ type: "EDIT", val: true });
   };
 
   const getWeather = useCallback(async () => {
-    const token = localStorage.getItem('token')
-
-    const user = await fetch('https://dashboard-7611d-default-rtdb.firebaseio.com/users/' + token + '.json');
+    const token = localStorage.getItem("token");
+    const user = await fetch(
+      "https://dashboard-7611d-default-rtdb.firebaseio.com/users/" +
+        token +
+        ".json"
+    );
     const userData = await user.json();
 
     const city = userData.city;
 
     const BASE_URL = process.env.REACT_APP_BASE_URL;
     const response = await fetch(
-      BASE_URL + "weather?q=" + city +  "&APPID=" + process.env.REACT_APP_WEATHER_KEY
+      BASE_URL +
+        "weather?q=" +
+        city +
+        "&APPID=" +
+        process.env.REACT_APP_WEATHER_KEY
     );
     const responseData = await response.json();
+    if (responseData.message && responseData.message === "city not found") {
+      setCityStatus(false);
+      setLoading(false);
+      return;
+    }
     setIconLink(
       "http://openweathermap.org/img/wn/" +
         responseData.weather[0].icon +
@@ -43,9 +56,12 @@ const Weather = (props) => {
     );
 
     const forecastRes = await fetch(
-      BASE_URL + "forecast?q=" + city +"&appid=" + process.env.REACT_APP_WEATHER_KEY
+      BASE_URL +
+        "forecast?q=" +
+        city +
+        "&appid=" +
+        process.env.REACT_APP_WEATHER_KEY
     );
-
 
     const forecastResData = await forecastRes.json();
     const d = new Date();
@@ -63,20 +79,20 @@ const Weather = (props) => {
     dispatch({ type: "WEATHER", val: responseData });
 
     setLoading(false);
-  },[dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     getWeather();
   }, [getWeather]);
 
-  useEffect(()=> {
-    const timer = setTimeout(()=>{
+  useEffect(() => {
+    const timer = setTimeout(() => {
       getWeather();
     }, 2000);
 
     return () => {
       clearTimeout(timer);
-    }
+    };
   }, [cityState, getWeather]);
 
   const content = forecast.map((el) => {
@@ -86,21 +102,45 @@ const Weather = (props) => {
     const date = d.getDate();
     const month = d.getMonth() + 1;
     return (
-      <div className={`col-md-4 col-lg-4 col-xl-2 my-sm-2 mx-1 forecast-el`} key={Math.random()}>
+      <div
+        className={`col-md-4 col-lg-4 col-xl-2 my-sm-2 mx-1 forecast-el`}
+        key={Math.random()}
+      >
         {Math.round(el.main.temp - 273)} &#x2103;
         <img
           src={
             "http://openweathermap.org/img/wn/" + el.weather[0].icon + "@2x.png"
-          } className={`img-fluid`}
+          }
+          className={`img-fluid`}
         />
-        <span className={`text-center`}>{hour}:{minute}</span>
-        <span className={`text-center`}>{date}-{month}</span>
+        <span className={`text-center`}>
+          {hour}:{minute}
+        </span>
+        <span className={`text-center`}>
+          {date}-{month}
+        </span>
       </div>
     );
   });
 
   if (loading) {
     return <div></div>;
+  }
+  if (!cityStatus) {
+    return (
+      <div className={`d-flex flex-column justify-content-center align-items-center h-100`}>
+        <h1>Sorry, No data found for this city.</h1>
+        <div className={`d-flex justify-content-center align-items-center`}>
+          <h4 className={`mb-0`}>Edit City </h4>
+          <FontAwesomeIcon
+          icon={faEdit}
+          onClick={editCityHandler}
+          className={`edit-city`}
+          size={"lg"}
+        />
+        </div>
+      </div>
+    );
   }
   return (
     <div className={`container`}>
