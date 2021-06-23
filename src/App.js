@@ -4,7 +4,9 @@ import "../src/Styles/style.scss";
 import Navigate from "./Navigate";
 import {useSelector, useDispatch} from 'react-redux';
 
+
 const App = () => {
+  document.title = "Dashboard"
   const background = useSelector(state => state.backgroundImg);
   const weather = useSelector(state => state.weather);
   const conditions = weather.weather.main;
@@ -17,7 +19,7 @@ const App = () => {
     const url = "https://source.unsplash.com/"+size+ "/?weather," + conditions 
 
     dispatch({type: 'BG', val: url})
-  }, [weather])
+  }, [weather, conditions, dispatch, size])
 
   return (
     <Fragment>

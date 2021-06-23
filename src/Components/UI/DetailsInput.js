@@ -35,8 +35,6 @@ const DetailsInput = (props) => {
 
     const responseData = await response.json();
     localStorage.setItem('token', responseData.name)
-
-    props.isSubmitted(true);
     dispatch({type: 'LOGIN', val: true});
   };
 

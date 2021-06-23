@@ -48,7 +48,7 @@ const Headline = (props) => {
             </div>
           </div>
           <div className={`col-2 d-flex justify-content-center img-div`}>
-            <img src={props.article.urlToImage} className={`img-fluid`} />
+            <img src={props.article.urlToImage} className={`img-fluid`} alt="Article Banner" />
           </div>
         </div>
       </div>

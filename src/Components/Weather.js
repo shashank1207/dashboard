@@ -64,9 +64,6 @@ const Weather = (props) => {
     );
 
     const forecastResData = await forecastRes.json();
-    const d = new Date();
-    const h = d.getHours();
-    const date = d.getDate();
     const newList = forecastResData.list.slice(0, 7);
     const list = [];
     newList.forEach((el, index) => {
@@ -110,7 +107,7 @@ const Weather = (props) => {
         <img
           src={
             "http://openweathermap.org/img/wn/" + el.weather[0].icon + "@2x.png"
-          }
+          } alt="forecast icon"
           className={`img-fluid`}
         />
         <span className={`text-center`}>
@@ -150,7 +147,7 @@ const Weather = (props) => {
           <div className={`row`}>
             <div className={`col-7`}>
               <div className={`d-flex align-items-center`}>
-                <img src={iconLink} />
+                <img src={iconLink} alt="Weather condition" />
                 <div className={`d-flex flex-column`}>
                   <div className={`font-weight-bold temp `}>
                     {Math.round(weather.main.temp - 273)}&#x2103;

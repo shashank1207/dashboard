@@ -15,7 +15,7 @@ const EditCity = () => {
 
   const cityOptionsLoader = (name) => {
     const cityList = CitiesObject.filter((city) => {
-      return !city.name.toLowerCase().search(name.toLowerCase());
+      return city.name.toLowerCase().search(name.toLowerCase()) !== -1;
     });
     setSearchedCity(cityList);
   };
@@ -50,7 +50,7 @@ const EditCity = () => {
     const responseData = await response.json();
 
     const updatedResponseData = { ...responseData, city: enteredCity };
-    const request = await fetch(
+    await fetch(
       "https://dashboard-7611d-default-rtdb.firebaseio.com/users/" +
         localStorage.getItem("token") +
         ".json",
